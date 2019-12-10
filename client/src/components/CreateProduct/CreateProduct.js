@@ -75,7 +75,7 @@ class CreateProduct extends Component{
                       <label forHtml = "select">Category</label>
                       <select type ="text"  name = "select" onChange = {this.handleChangeSelect}>
                           
-                          <option value = "hats" selected >Hats</option>
+                          <option value = "hats" defaultValue >Hats</option>
                           <option value = "gloves">Gloves</option>
                           <option value = "shoes">Shoes</option>
                           <option value = "toys">Toys</option>

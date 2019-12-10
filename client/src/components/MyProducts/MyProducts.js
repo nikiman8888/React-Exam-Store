@@ -17,7 +17,7 @@ class MyProducts  extends Component{
         productService.getMy() // moje bi i data
         .then(res=>res.json())
         .then(products => {
-            console.log(products)
+            //console.log(products)
             this.setState({products:products})
         })            
         }

@@ -6,7 +6,11 @@ class UpdateProduct extends React.Component {
     constructor(props){
         super (props)
         this.state ={
-            product:''
+            title:'',
+            price:'',
+            imageUrl:'',
+            category: '',
+            description: '',
         }
     }
 
@@ -18,16 +22,22 @@ class UpdateProduct extends React.Component {
         //let id = this.props.location.search.substring(4);
 
         let id = this.props.match.params.prodId;
-        console.log(this.props)
+        
         productServices.getOne(id)
             .then(res => res.json())
             .then(product => {
-                console.log(product)
-                this.setState({ product: product })
+                this.setState({        // tuk kato cialo setvam state ot polu4enia product
+                    title:product.title,   // za da moje posle pri submit da vzema obnovenia state
+                    price:product.price,
+                    imageUrl:product.imageUrl,
+                    category:product.category,
+                    description:product.description
+                })
             }).catch(console.error)
     }
 
     changeHandlerTitle =(e)=>{
+       
         this.setState({
             title:e.target.value
         }) 
@@ -59,7 +69,8 @@ class UpdateProduct extends React.Component {
     submitHandler =() =>{
       
         //tuk triabva validacii za poletatta
-     const data = this.state;
+     const data =  this.state;
+        console.log(data);
      let id = this.props.match.params.prodId;
 
      productServices.update(id,data)
@@ -81,13 +92,13 @@ class UpdateProduct extends React.Component {
                <form>
                    <div className = "container-input">
                       <label forHtml = "title">Title</label>
-                      <input type ="text" placeholder = "title" name = "title" onChange = {this.changeHandlerTitle} defaultValue = {this.state.product.title}/>
+                      <input type ="text" placeholder = "title" name = "title" onChange = {this.changeHandlerTitle} defaultValue = {this.state.title}/>
                       
                    </div>
 
                    <div className = "container-input">
                       <label forHtml = "select">Category</label>
-                      <select type ="text"  name = "select" onChange = {this.handleChangeSelect} defaultValue = {this.state.product.category}>
+                      <select type ="text"  name = "select" onChange = {this.handleChangeSelect} value = {this.state.category}>
                           
                           <option value = "hats"  >Hats</option>
                           <option value = "gloves">Gloves</option>
@@ -98,22 +109,22 @@ class UpdateProduct extends React.Component {
 
                    <div className = "container-input">
                       <label forHtml = "desription">Description</label>
-                      <textarea type ="text" placeholder = "max 50 symbols" name = "description"  onChange = {this.changeHandlerDescription} defaultValue= {this.state.product.description}/>
+                      <textarea type ="text" placeholder = "max 50 symbols" name = "description"  onChange = {this.changeHandlerDescription} defaultValue= {this.state.description}/>
                    </div>
 
                    <div className = "container-input">
                       <label forHtml = "price">Price</label>
-                      <input type ="text" placeholder = "price" name = "price"  onChange = {this.changeHandlerPrice} defaultValue= {this.state.product.price}/>
+                      <input type ="text" placeholder = "price" name = "price"  onChange = {this.changeHandlerPrice} defaultValue= {this.state.price}/>
                    </div>
 
                   
                    <div className = "container-input">
                       <label forHtml = "imageUrl">Photo</label>
-                      <input type ="text" placeholder = "price" name = "imageUrl"  onChange = {this.changeHandlerImage} defaultValue= {this.state.product.imageUrl}/>
+                      <input type ="text" placeholder = "price" name = "imageUrl"  onChange = {this.changeHandlerImage} defaultValue= {this.state.imageUrl}/>
                    </div>
                   
                    <div className = "container-input" >
-                      <button type = "button" onClick = {this.submitHandler}>Create</button>
+                      <button type = "button" onClick = {this.submitHandler}>Update</button>
                    </div>
                </form>
             </div>

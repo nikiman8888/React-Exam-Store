@@ -67,8 +67,9 @@ export default {
 
     },
 
-    update: (data,id) => {
-        return fetch('http://localhost:9999/api/product/details?id=' + id, {
+    update: (id,data) => {
+        console.log(data)
+        return fetch('http://localhost:9999/api/product/update?id=' + id, {
             body:JSON.stringify(data),
             method: 'PUT',
             headers: {

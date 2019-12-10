@@ -60,8 +60,8 @@ module.exports = {
     put: (req, res, next) => {
         const pid = req.params.id;
         const { id } = req.query;
-        const { sales} = req.body;
-        models.Product.updateOne({ _id: id }, { sales})
+        const { title, price, imageUrl, description, category} = req.body;
+        models.Product.updateOne({ _id: id }, { title, price, imageUrl, description, category})
             .then((updatedProduct) => res.send(updatedProduct))
             .catch(next)
     },

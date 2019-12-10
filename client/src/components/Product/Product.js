@@ -28,7 +28,7 @@ class Product extends React.Component {
                 <p className="price">Price {this.props.product.price}</p>
                 <p className="sales">Sales {this.props.product.sales}</p>
                 {this.props.page === "myPage" && <Link to={updateUrl} className="update" >Update</Link>}
-                {this.props.page === "myPage" && <Link to="/my-products" className="details" product-id={this.props.product.id}>Delete</Link>}
+                {this.props.page === "myPage" && <Link to="/my-products" className="delete" >Delete</Link>}
                 {this.props.page === "main" && <Link to={detailsUrl} className="details" >Details</Link>}
             </div>
         )
