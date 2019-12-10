@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './CreateProduct.css';
-import productService  from '../../services/productService';
+import productServices  from '../../services/productService';
 
 class CreateProduct extends Component{
     constructor(props){
@@ -50,7 +50,7 @@ class CreateProduct extends Component{
       
         //tuk triabva validacii za poletatta
      const data = this.state;
-     productService.post(data)
+     productServices.post(data)
      .then(()=>{
          this.props.history.push('/my-products')
      })   

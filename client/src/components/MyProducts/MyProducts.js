@@ -28,7 +28,7 @@ class MyProducts  extends Component{
         return (
          <React.Fragment>
              <div className = "shop-container">
-                    <h2>MyProducts </h2>
+                    <h2>MyProducts</h2>
                     {this.state.products.map(product =>(
                 <Product product = {product} page = {page}/>
             ))}

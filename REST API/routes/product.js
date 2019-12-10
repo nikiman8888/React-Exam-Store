@@ -12,7 +12,7 @@ router.post('/', auth(), controllers.product.post);
 
 router.put('/details', controllers.product.putSell);
 
-router.put('/:id', auth(), controllers.product.put);
+router.put('/update', auth(), controllers.product.put);
 
 router.delete('/:id', auth(), controllers.product.delete);
 
