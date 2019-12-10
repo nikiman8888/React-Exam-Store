@@ -68,7 +68,7 @@ export default {
     },
 
     update: (id,data) => {
-        console.log(data)
+        //console.log(data)
         return fetch('http://localhost:9999/api/product/update?id=' + id, {
             body:JSON.stringify(data),
             method: 'PUT',
@@ -82,7 +82,15 @@ export default {
 
     },
     
-    delete: () => {
-        return fetch()
+    delete: (id) => {
+        return fetch('http://localhost:9999/api/product/delete?id=' + id, {          
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+            },
+
+            credentials: 'include'
+        })
     }
 }

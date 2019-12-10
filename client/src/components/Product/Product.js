@@ -13,6 +13,7 @@ class Product extends React.Component {
 
         const detailsUrl = '/details/' + this.props.product._id;
         const updateUrl = '/update/' +this.props.product._id;
+        const deleteUrl = '/delete/' + this.props.product._id;
         //let linkUrl = "/details?id="+this.props.product._id;
         //<Link to={{ pathname: '/details', query: { id: this.props.product._id } }}/>
         //taka go chetem this.props.location.query.id
@@ -28,7 +29,7 @@ class Product extends React.Component {
                 <p className="price">Price {this.props.product.price}</p>
                 <p className="sales">Sales {this.props.product.sales}</p>
                 {this.props.page === "myPage" && <Link to={updateUrl} className="update" >Update</Link>}
-                {this.props.page === "myPage" && <Link to="/my-products" className="delete" >Delete</Link>}
+                {this.props.page === "myPage" && <Link to={deleteUrl} className="delete" >Delete</Link>}
                 {this.props.page === "main" && <Link to={detailsUrl} className="details" >Details</Link>}
             </div>
         )

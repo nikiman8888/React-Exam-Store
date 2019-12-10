@@ -14,9 +14,11 @@ import Login from './components/Login/Login';
 import cookieParser from './utils/cookieParser.js';
 import userServices from './services/userService';
 import Logout from './components/Login/Logout';
-import ChooseProduct from './components/ChooseProduct/ChooseProduct';
+import Category from './components/Category/Category';
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import UpdateProduct from './components/UpdateProduct/UpdateProduct';
+import DeleteProduct from './components/DeleteProduct/DeleteProduct';
+
 function render(title, Cmp, otherProps) {
   return function (props) {
     return <Cmp title={title} {...props} {...otherProps} />
@@ -62,8 +64,8 @@ class App extends React.Component {
           <Route path="/register" component={Register} />
           <Route path="/create-product" render={render('Main', CreateProduct, isLogged)} />
           <Route path="/update/:prodId" component={UpdateProduct } />
-          <Route path="/choose" component={ChooseProduct} />
-          <Route path="/create" component={Main} />
+          <Route path="/category" component={Category} />
+          <Route path="/delete/:prodId" component={DeleteProduct} />
           <Route path="/create" component={Main} />
           <Route path="/create" component={Main} />
           <Route path="/create" component={Main} />

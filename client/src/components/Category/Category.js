@@ -1,8 +1,8 @@
 import React from 'react';
-import './ChooseProduct.css';
+import './Category.css';
 import {Link} from 'react-router-dom';
 
-function ChooseProduct(){
+function Category(){
     return (
         <React.Fragment>
         <h2>Choose item type</h2>
@@ -17,4 +17,4 @@ function ChooseProduct(){
     )
 }
 
-export default ChooseProduct;
+export default Category;

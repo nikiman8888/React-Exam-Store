@@ -77,7 +77,7 @@ module.exports = {
     },
 
     delete: (req, res, next) => {
-        const id = req.params.id;
+        const { id } = req.query;
         models.Product.deleteOne({ _id: id })
             .then((removedProduct) => res.send(removedProduct))
             .catch(next)
