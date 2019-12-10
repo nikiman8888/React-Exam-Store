@@ -1,0 +1,11 @@
+.products{
+  display: inline-block;
+  margin: 20px;
+  background:lightgrey;
+  width: 29%;
+  height: 88%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+

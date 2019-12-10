@@ -1,0 +1,51 @@
+
+  
+  h2 {
+    text-align: center;
+    font-family: cursive;
+    font-size: 40px ;
+    margin-top:120px;
+    background: lightgray;
+    width: 44%;
+    margin-left:23rem;
+    border-radius: 10px;
+    padding-top:20px ;
+    
+  }
+  
+  .links-container{
+   
+    width: 40vw;
+    height: 40vh;
+    margin-top:41px;
+    margin-left: 25rem;
+    margin-right: 20rem;
+    border: 4px solid lightseagreen;
+    background-color: rgb(186, 223, 228);
+    border-radius: 8px ;
+    text-align: center;
+    
+      
+  }
+
+  .links-container a {
+      overflow: hidden;
+      display: inline-block;
+     text-decoration: none;
+      margin:30px;
+      padding: 20px;
+      font-size: 20px;
+      font-family: cursive;
+      position: relative;
+      background-color: lightskyblue;
+      border: 3px solid lightseagreen;
+      border-radius: 4px;
+      color: black;
+      
+  }
+
+  .links-container a:hover{
+    background-color: lightseagreen;
+    color: white;
+  }
+  

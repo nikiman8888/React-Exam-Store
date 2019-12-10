@@ -1,0 +1,27 @@
+
+.title{
+  display :block;
+  margin: 10px;
+  font-family: cursive;
+  
+}
+
+.img-atr{
+  height: 110px;
+  width: 200px;
+}
+
+.details {
+text-decoration: none;
+padding: 1px 15px ;
+border-radius: 7px ;
+color: lightseagreen;
+text-align: center;
+font-family: cursive;
+}
+.details:hover {
+  background: lightseagreen;
+  color: white;
+}
+  
+  

@@ -1,0 +1,45 @@
+form {
+    background-color: grey ;
+    float: center;
+    width: 50%;
+    border-radius: 15px;
+    margin-left: 24% ;
+    text-align: center;
+    background-color: rgb(186, 223, 228);
+    border: 4px solid lightseagreen;
+}
+
+ .container-input{
+    margin-top:35px;
+   
+    
+ }
+ label{
+     margin-top: 25px;
+     margin-right:15px;
+     display: inline-block;
+     font-family: cursive;
+     font-size: 20px;
+ }
+ input {
+     display: inline-block;
+     font-size: 20px;
+     border-radius: 4px;
+ }
+ #re-pass{
+    margin-right: 25px ;
+}
+button {
+    margin-bottom: 23px;
+    font-size: 25px;
+    border-radius: 5px;
+    padding: 4px 23px;
+    border: lightseagreen;
+    background: lightseagreen;
+}
+
+button:hover {
+    background-color: lightseagreen;
+    color:white;
+  }
+ 
