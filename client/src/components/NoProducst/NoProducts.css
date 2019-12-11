@@ -1,0 +1,26 @@
+.no-product-conntainer{
+    text-decoration: none;
+    font-size: xx-large;
+    
+    
+    color:black;
+    border-radius: 4px;
+    font-family: cursive;
+}
+
+.no-product-conntainer a{
+    padding: 15px;
+    background-color:lightskyblue;
+    border-radius: 5px;
+    margin-left:37%;
+    margin-top: 30%;
+    text-decoration: none;
+    
+}
+
+.no-product-conntainer a:hover{
+   
+    background-color: lightseagreen;
+    color:white
+    
+}

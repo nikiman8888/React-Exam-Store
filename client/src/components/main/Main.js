@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './main.css';
 import productService from '../../services/productService';
 import Products from '../products/Products';
+import NoProducts from '../NoProducst/NoProducts';
 
 class Main extends Component {
     constructor(props) {
@@ -10,15 +11,24 @@ class Main extends Component {
             products: []
         }
     }
+    
     componentDidMount() {
+        console.log(this.props);
+        let islog = this.props.isLogged;
+        console.log(islog);
         productService.getAll() // moje bi i data
             .then(res => res.json())
             .then(products => {
-                //console.log(products)
-                this.setState({ products: products })
+                
+                this.setState({ products: products })                                         
+            })
+            .then(()=>{
+                if(this.state.products.length === 0){
+                    this.props.history.push('/no-products')
+                }
             })
     }
-
+   
     render() {
         const page = 'main'
         return (

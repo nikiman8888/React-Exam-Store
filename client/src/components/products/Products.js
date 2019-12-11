@@ -5,10 +5,11 @@ import Product from '../Product/Product';
 import db from '../../db';
 import service from '../../services/productService';
 
+
 function Products ({products,page}){
-       
+         
         return(  
-                 products.map(product =>(                   
+                products.map(product =>(                   
                  <Product product = {product} page = {page}/>                    
              ))                                      
         )   
