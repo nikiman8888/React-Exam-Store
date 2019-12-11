@@ -66,13 +66,13 @@ class CreateProduct extends Component{
                <h2>Create Product</h2>
                <form>
                    <div className = "container-input">
-                      <label forHtml = "title">Title</label>
+                      <label htmlFor = "title">Title</label>
                       <input type ="text" placeholder = "title" name = "title" onChange = {this.changeHandlerTitle}/>
                       
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "select">Select Category</label>
+                      <label htmlFor = "select">Select Category</label>
                       <select type ="text"  name = "select" onChange = {this.handleChangeSelect} >
                           
                           <option value = "hats"  >Hats</option>
@@ -83,18 +83,18 @@ class CreateProduct extends Component{
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "desription">Description</label>
+                      <label htmlFor = "desription">Description</label>
                       <textarea type ="text" placeholder = "max 50 symbols" name = "description"  onChange = {this.changeHandlerDescription}/>
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "price">Price</label>
+                      <label htmlFor = "price">Price</label>
                       <input type ="text" placeholder = "price" name = "price"  onChange = {this.changeHandlerPrice}/>
                    </div>
 
                   
                    <div className = "container-input">
-                      <label forHtml = "imageUrl">Photo</label>
+                      <label htmlFor = "imageUrl">Photo</label>
                       <input type ="text" placeholder = "put url of photo" name = "imageUrl"  onChange = {this.changeHandlerImage}/>
                    </div>
                   
