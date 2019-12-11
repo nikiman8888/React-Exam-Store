@@ -97,7 +97,7 @@ class UpdateProduct extends React.Component {
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "select">Category</label>
+                      <label forHtml = "select">Select Category</label>
                       <select type ="text"  name = "select" onChange = {this.handleChangeSelect} value = {this.state.category}>
                           
                           <option value = "hats"  >Hats</option>

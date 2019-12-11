@@ -9,8 +9,8 @@ class CreateProduct extends Component{
             title:'',
             price:'',
             imageUrl:'',
-            category: '',
-            description: '',
+            category: 'hats', // zashtoto ako potrebitelia ne smeni options categoriata ostava prazna
+            description: '',                          // i zatova go setvam predvariteelno
             sales:0
         }
     }
@@ -73,9 +73,9 @@ class CreateProduct extends Component{
 
                    <div className = "container-input">
                       <label forHtml = "select">Select Category</label>
-                      <select type ="text"  name = "select" onChange = {this.handleChangeSelect}>
+                      <select type ="text"  name = "select" onChange = {this.handleChangeSelect} >
                           
-                          <option value = "hats" defaultValue >Hats</option>
+                          <option value = "hats"  >Hats</option>
                           <option value = "gloves">Gloves</option>
                           <option value = "shoes">Shoes</option>
                           <option value = "toys">Toys</option>

@@ -8,19 +8,28 @@ class Main extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            products: []
+            products: [],
+            senderInfo:''
         }
     }
     
     componentDidMount() {
-        console.log(this.props);
-        let islog = this.props.isLogged;
-        console.log(islog);
-        productService.getAll() // moje bi i data
+        this.setState({senderInfo:this.props.location.senderInfo}) // vzemame info ot koia stranica sym prepraten
+              
+        productService.getAll() 
             .then(res => res.json())
             .then(products => {
-                
-                this.setState({ products: products })                                         
+                if(this.state.senderInfo!== undefined){   //akoi imame senderInfo zna4i idva ot Category
+                    
+                    let newProducts = products
+                    .filter(product =>product.category === this.state.senderInfo);
+                                     
+                    this.setState({products:newProducts});
+                    this.setState({senderInfo:this.props.location.senderInfo});
+                        
+                }else{
+                    this.setState({ products: products })   
+                }                                      
             })
             .then(()=>{
                 if(this.state.products.length === 0){
@@ -33,8 +42,8 @@ class Main extends Component {
         const page = 'main'
         return (
 
-            <div className=".slider-latest-products">
-                <h2>All Products</h2>
+            <div >              
+                    <h2>{this.state.senderInfo === undefined? 'All Products':this.state.senderInfo.toLocaleUpperCase()}</h2>
                 <Products products={this.state.products} page={page} />
             </div>
         )
