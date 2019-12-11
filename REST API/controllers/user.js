@@ -20,6 +20,12 @@ module.exports = {
         login: (req, res, next) => {
             const { username, password } = req.body;
             models.User.findOne({ username })
+                .then(user =>{
+                    if(!user){
+                        res.send('Invalid username');
+                        return;
+                    }
+                })
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
                     if (!match) {

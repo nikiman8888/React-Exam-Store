@@ -43,13 +43,12 @@ class App extends React.Component {
   }
 
   login = (history, data) => {
-    userServices.login(data).then(() => {
-      this.setState({ isLogged: true });
-      //triabva autenticacia tuk
-
-      history.push('/my-products')
-
-    })
+    userServices.login(data).then((res) => {
+        //validacii 
+        this.setState({ isLogged: true });
+        history.push('/my-products')
+         
+    }).catch(console.error)
   }
 
   render() {
