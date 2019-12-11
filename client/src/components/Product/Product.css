@@ -23,5 +23,33 @@ font-family: cursive;
   background: lightseagreen;
   color: white;
 }
+
+.update {
+  text-decoration: none;
+  padding: 1px 15px ;
+  border-radius: 7px ;
+  color: lightseagreen;
+  text-align: center;
+  font-family: cursive;
+  }
+
+  .update:hover {
+    background: lightseagreen;
+    color: white;
+  }
+
+  .delete {
+    text-decoration: none;
+    padding: 1px 15px ;
+    border-radius: 7px ;
+    color: lightseagreen;
+    text-align: center;
+    font-family: cursive;
+    }
+
+    .delete:hover {
+      background: lightseagreen;
+      color: white;
+    }
   
   

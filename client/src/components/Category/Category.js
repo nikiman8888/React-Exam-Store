@@ -7,10 +7,10 @@ function Category(){
         <React.Fragment>
         <h2>Choose item type</h2>
         <div className = "links-container">
-        <Link to = "/santa-hats">Santa Hats</Link>
-        <Link to = "/santa-toys">Santa Gloves</Link>
-        <Link to = "/santa-gloves">Santa Boots</Link>
-        <Link to = "/santa-boots">Santa Toys</Link>
+        <Link to = "/hats">Santa Hats</Link>
+        <Link to = "/toys">Santa Gloves</Link>
+        <Link to = "/gloves">Santa Boots</Link>
+        <Link to = "/boots">Santa Toys</Link>
         </div>
 
      </React.Fragment>

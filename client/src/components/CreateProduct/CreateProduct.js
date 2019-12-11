@@ -72,7 +72,7 @@ class CreateProduct extends Component{
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "select">Category</label>
+                      <label forHtml = "select">Select Category</label>
                       <select type ="text"  name = "select" onChange = {this.handleChangeSelect}>
                           
                           <option value = "hats" defaultValue >Hats</option>
@@ -95,7 +95,7 @@ class CreateProduct extends Component{
                   
                    <div className = "container-input">
                       <label forHtml = "imageUrl">Photo</label>
-                      <input type ="text" placeholder = "price" name = "imageUrl"  onChange = {this.changeHandlerImage}/>
+                      <input type ="text" placeholder = "put url of photo" name = "imageUrl"  onChange = {this.changeHandlerImage}/>
                    </div>
                   
                    <div className = "container-input" >

@@ -18,6 +18,7 @@ import Category from './components/Category/Category';
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import UpdateProduct from './components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/DeleteProduct/DeleteProduct';
+import NotFound from './components/NotFound/NotFound';
 
 function render(title, Cmp, otherProps) {
   return function (props) {
@@ -43,6 +44,8 @@ class App extends React.Component {
   login = (history, data) => {
     userServices.login(data).then(() => {
       this.setState({ isLogged: true });
+//triabva autenticacia tuk
+
       history.push('/my-products')
 
     })
@@ -66,9 +69,10 @@ class App extends React.Component {
           <Route path="/update/:prodId" component={UpdateProduct } />
           <Route path="/category" component={Category} />
           <Route path="/delete/:prodId" component={DeleteProduct} />
+          
           <Route path="/create" component={Main} />
           <Route path="/create" component={Main} />
-          <Route path="/create" component={Main} />
+          <Route  component={NotFound} />
         </Switch>
       </Router>
     );
