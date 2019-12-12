@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './Login.css';
-import { directive } from '@babel/types';
-import userService from '../../services/userService';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 import loginValidator from '../../formValidations/loginValidator';
 
@@ -17,12 +15,13 @@ class Login extends Component {
     }
     componentDidMount() {
 
-      // //this.setState({senderInfo:this.props.location.senderInfo});
-      // if (this.props.location.senderInfo === 'register') {
-      //     console.log('here')
-      //     ToastsStore.success('Register succes...Please login')
-      // }
+        this.setState({ senderInfo: this.props.location.senderInfo });
+        if (this.props.location.senderInfo === 'register') {
+            console.log('here')
+            ToastsStore.success('Register successfull.Please login.')
+        }
     }
+
     changeHandlerUsername = (e) => {
         this.setState({
             username: e.target.value
@@ -40,13 +39,13 @@ class Login extends Component {
         let validator = loginValidator(
             this.state.username,
             this.state.password,
-      
-          )
-          if (!validator) {
+
+        )
+        if (!validator) {
             return;
             //debugger;
-          }
-       const data = this.state;
+        }
+        const data = this.state;
         this.props.login(this.props.history, data);
 
     }
