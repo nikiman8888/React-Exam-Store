@@ -14,8 +14,14 @@ module.exports = {
             const { username, password } = req.body;
             models.User.create({ username, password })
               .then(user =>{
-                  res.send({succes:true,message:'Succesfull Registered'})
-              }).catch(next);
+                  res.send({success:true,message:'Succesfull Registered'})
+              }).catch((err) =>{
+                  let message = 'Something is not correct';
+                  if(err.code === 11000){
+                      message = 'Username already exist'
+                  }
+                  return res.json({success:false,message:message})
+              });
                   
               
                   

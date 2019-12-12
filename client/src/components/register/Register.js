@@ -45,19 +45,20 @@ class Register extends Component {
                 .then(res => res.json())
                 .then(res=>{
                     console.log(res.message)
+                    console.log(res.success)
                     if (!res.success) {
                         ToastsStore.error(res.message);
+                      }
+                      else{
+                        ToastsStore.success('Succesfull regisitered');
+                        //this.props.history.push('login');
                       }                     
-                        ToastsStore.success(res.message);
-                        this.setState({
-                          loggedIn: true
-                        });
-                        console.log(this.props)
-                        this.props.history.push('/login')
-                      
+                        
+                       // this.setState({}); 
+                                                                                                     
                     })
                     .catch(err =>{
-                        ToastsStore.error('Username already exist')
+                        ToastsStore.error('Username already exist');
                     });
                          
         }

@@ -9,7 +9,7 @@ function registerValidator (username,password,repeadPassword){
         return false;
     }
     if(password === '' || password.length < 3){
-        ToastsStore.error('Password must be at least 3 characters lon')
+        ToastsStore.error('Password must be at least 3 characters long')
     }
     if (password !== repeadPassword) {
         ToastsStore.error("Password and Repead Password don't match");
