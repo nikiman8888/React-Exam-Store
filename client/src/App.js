@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import './App.css';
-import {ToastContainer,toast, ToastsContainer} from 'react-toasts';
+import { ToastContainer, toast, ToastsContainer, ToastsStore } from 'react-toasts';
 import TopNav from './components/topNav/TopNav'
 import Main from './components/main/Main';
 import Contact from './components/Contact/Contact';
@@ -20,6 +20,7 @@ import UpdateProduct from './components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/DeleteProduct/DeleteProduct';
 import NotFound from './components/NotFound/NotFound';
 import NoProducts from './components/NoProducst/NoProducts';
+import loginValidator from './formValidations/loginValidator';
 
 function render(title, Cmp, otherProps) {
   return function (props) {
@@ -42,13 +43,24 @@ class App extends React.Component {
     })
   }
 
-  login = (history, data) => {
-    userServices.login(data).then((res) => {
-        //validacii 
-        this.setState({ isLogged: true });
-        history.push('/my-products')
-         
-    }).catch(console.error)
+  login = (history, data) => {   
+      userServices.login(data)
+      .then(res =>res.json())
+      .then(res=>{
+        if(!res.success){
+          ToastsStore.error(res.message)
+        }else{
+          ToastsStore.success(res.message);
+          this.setState({ isLogged: true });
+          history.push('/my-products')
+        }
+      }).catch(error =>{
+        ToastsStore.error(error.message)
+      })
+
+       // this.setState({ isLogged: true });
+       // history.push('/my-products')
+      
   }
 
   render() {
@@ -56,7 +68,7 @@ class App extends React.Component {
     return (
 
       <Router>
-        
+
         <TopNav isLogged={isLogged} />
         <Switch>
           <Route path="/" exact render={render('Main', Main, isLogged)} />
@@ -67,12 +79,12 @@ class App extends React.Component {
           <Route path="/details/:prodId" component={DetailsPage} />
           <Route path="/register" component={Register} />
           <Route path="/create-product" render={render('Main', CreateProduct, isLogged)} />
-          <Route path="/update/:prodId" component={UpdateProduct } />
+          <Route path="/update/:prodId" component={UpdateProduct} />
           <Route path="/category" component={Category} />
-          <Route path="/delete/:prodId" component={DeleteProduct} />         
+          <Route path="/delete/:prodId" component={DeleteProduct} />
           <Route path="/no-products" render={render('No Porducts', NoProducts, isLogged)} />
-          
-          <Route  component={NotFound} />
+
+          <Route component={NotFound} />
         </Switch>
       </Router>
     );

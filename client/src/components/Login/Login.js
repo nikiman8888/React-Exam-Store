@@ -37,42 +37,17 @@ class Login extends Component {
 
 
     submitHandler = () => {
-        //tuk triabva validacii za poletatta
         let validator = loginValidator(
             this.state.username,
             this.state.password,
-
-        )
-        if (!validator) {
+      
+          )
+          if (!validator) {
             return;
             //debugger;
-        } else {
-            const data = this.state;
-            userService.login(data)
-                .then(res => res.json())
-                .then(res => {
-                    console.log(res)
-                    
-                    if (!res.success) {
-                        ToastsStore.error(res.message);
-                        console.log('here')
-                    }
-                    else {
-                        console.log('success')
-                        //ToastsStore.success('Succesfull regisitered');
-                        this.setState({isLogged:true})
-                        this.props.history.push({ pathname: '/my-products', senderInfo: 'login' })
-                    }
-                })
-                .catch(err => {
-                    ToastsStore.error(err.message);
-                    //console.log('heres')
-                });
-
-        }
-
-        const data = this.state;
-        //this.props.login(this.props.history, data);
+          }
+       const data = this.state;
+        this.props.login(this.props.history, data);
 
     }
 
