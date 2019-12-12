@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Login.css';
 import { directive } from '@babel/types';
 import services from '../../services/userService';
-
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
 class Login extends Component{
     constructor(props){
@@ -10,7 +10,17 @@ class Login extends Component{
         this.state = {
             username:'',
             password:'',
-            errors:null
+            errors:null,
+            senderInfo:''
+        }
+    }
+    componentDidMount(){
+        console.log('inside');
+        console.log(this.props.location.senderInfo)
+        //this.setState({senderInfo:this.props.location.senderInfo});
+        if(this.props.location.senderInfo === 'register'){
+            console.log('here')
+            ToastsStore.success('Register succes...Please login')
         }
     }
     changeHandlerUsername =(e)=>{
@@ -35,9 +45,11 @@ class Login extends Component{
     }
         
     render (){
+        
         return (
-            
-            <div className = "shop-container">
+            <React.Fragment>
+                <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
+                <div className = "shop-container">
                <h2>Please Login</h2>
                <form>
                    <div className = "container-input">
@@ -55,6 +67,8 @@ class Login extends Component{
                    </div>
                </form>
             </div>
+            </React.Fragment>
+            
         )
     }
     

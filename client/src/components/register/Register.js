@@ -11,9 +11,8 @@ class Register extends Component {
             username: '',
             password: '',
             repeatPassword: '',
-            errors: null,
-            succesRegister: ''
         }
+
 
     }
     changeHandlerUsername = (e) => {
@@ -40,27 +39,24 @@ class Register extends Component {
         )
         if (!validator) {
             return;
+            debugger;
         } else {
             services.register(data)
                 .then(res => res.json())
-                .then(res=>{
-                    console.log(res.message)
-                    console.log(res.success)
+                .then(res => {
+                    
                     if (!res.success) {
                         ToastsStore.error(res.message);
-                      }
-                      else{
-                        ToastsStore.success('Succesfull regisitered');
-                        //this.props.history.push('login');
-                      }                     
-                        
-                       // this.setState({}); 
-                                                                                                     
-                    })
-                    .catch(err =>{
-                        ToastsStore.error('Username already exist');
-                    });
-                         
+                    }
+                    else {
+                     //ToastsStore.success('Succesfull regisitered');
+                        this.props.history.push({ pathname: '/login', senderInfo: 'register' })
+                    }                   
+                })
+                .catch(err => {
+                    ToastsStore.error('Username already exist');
+                });
+
         }
     }
 
