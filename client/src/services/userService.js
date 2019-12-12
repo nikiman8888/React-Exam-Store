@@ -6,7 +6,8 @@ export default  {
             headers: {
                 'Content-type': 'application/json'
             }
-        }).then(res =>res.json)
+        })
+        
 
         
     },

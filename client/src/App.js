@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import './App.css';
-
+import {ToastContainer,toast, ToastsContainer} from 'react-toasts';
 import TopNav from './components/topNav/TopNav'
 import Main from './components/main/Main';
 import Contact from './components/Contact/Contact';
@@ -56,6 +56,7 @@ class App extends React.Component {
     return (
 
       <Router>
+        
         <TopNav isLogged={isLogged} />
         <Switch>
           <Route path="/" exact render={render('Main', Main, isLogged)} />

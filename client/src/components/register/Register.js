@@ -1,75 +1,99 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../register/register.css';
-import { directive } from '@babel/types';
+import registerValidator from '../../formValidations/registerValidation';
 import services from '../../services/userService';
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
-class Register extends Component{
-    constructor(props){
+class Register extends Component {
+    constructor(props) {
         super(props)
         this.state = {
-           username:'',
-           password:'',
-           repeadPassword:'',
-           errors:null,
-           succesRegister:''
+            username: '',
+            password: '',
+            repeatPassword: '',
+            errors: null,
+            succesRegister: ''
         }
-        
+
     }
-    changeHandlerUsername =(e)=>{
+    changeHandlerUsername = (e) => {
         this.setState({
-            username:e.target.value
-        }) 
-    }
-    changeHandlerPass =(e)=>{
-        this.setState({
-            password:e.target.value
-        }) 
-    }
-    changeHandlerRePass =(e)=>{
-        this.setState({
-            repeadPassword:e.target.value
-        }) 
-    }
-    submitHandler =() =>{
-        //tuk triabva validacii za poletatta
-        
-        const data = this.state;
-       
-       services.register(data).then(()=>{
-           console.log(this.props);
-           
-           this.props.history.push('/login');
+            username: e.target.value
         })
-       
     }
-   
-    
-    render (){
+    changeHandlerPass = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+    changeHandlerRePass = (e) => {
+        this.setState({
+            repeatPassword: e.target.value
+        })
+    }
+    submitHandler = () => {
+        const data = this.state;
+        let validator = registerValidator(
+            this.state.username,
+            this.state.password,
+            this.state.repeatPassword
+        )
+        if (!validator) {
+            return;
+        } else {
+            services.register(data)
+                .then(res => res.json())
+                .then(res=>{
+                    console.log(res.message)
+                    if (!res.success) {
+                        ToastsStore.error(res.message);
+                      }                     
+                        ToastsStore.success(res.message);
+                        this.setState({
+                          loggedIn: true
+                        });
+                        console.log(this.props)
+                        this.props.history.push('/login')
+                      
+                    })
+                    .catch(err =>{
+                        ToastsStore.error('Username already exist')
+                    });
+                         
+        }
+    }
+
+
+    render() {
+
         return (
-            
-            <div className = "shop-container">
-               <h2>Please Register</h2>
-               <form>
-                   <div className = "container-input">
-                      <label htmlFor = "username">Username</label>
-                      <input type ="text" onChange ={this.changeHandlerUsername} placeholder = "username" name = "username" />
-                   </div>
-                   <div className = "container-input">
-                      <label htmlFor = "password">Password</label>
-                      <input type ="text" onChange ={this.changeHandlerPass} placeholder = "password" name = "pasword" />
-                   </div>
-                   <div className = "container-input">
-                      <label htmlFor = "re-password">Re-Password</label>
-                      <input type ="text" onChange ={this.changeHandlerRePass} placeholder = "re-password" name = "re-password" id = "re-pass"/>
-                   </div>
-                   <div className = "container-input" >
-                      <button type ="button" onClick = {this.submitHandler}>Register</button>
-                   </div>
-               </form>
-            </div>
+            <React.Fragment>
+                <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
+                <div className="shop-container">
+                    <h2>Please Register</h2>
+                    <form>
+                        <div className="container-input">
+                            <label htmlFor="username">Username</label>
+                            <input type="text" onChange={this.changeHandlerUsername} placeholder="username" name="username" />
+                        </div>
+                        <div className="container-input">
+                            <label htmlFor="password">Password</label>
+                            <input type="text" onChange={this.changeHandlerPass} placeholder="password" name="pasword" />
+                        </div>
+                        <div className="container-input">
+                            <label htmlFor="re-password">Re-Password</label>
+                            <input type="text" onChange={this.changeHandlerRePass} placeholder="re-password" name="re-password" id="re-pass" />
+                        </div>
+                        <div className="container-input" >
+                            <button type="button" onClick={this.submitHandler}>Register</button>
+                        </div>
+                    </form>
+                </div>
+            </React.Fragment>
+
         )
     }
-    
+
 }
 
 
