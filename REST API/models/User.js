@@ -10,8 +10,10 @@ const userSchema = new Schema({
 
     username: {
         type: String,
-        unique: true,
-        required: true
+        required: true,
+        index:true,
+        unique: true
+        
     },
 
     password: {
@@ -26,6 +28,10 @@ const userSchema = new Schema({
     products: [{ type: ObjectId, ref: "Product" }]
 
 });
+
+const forceUnique = mongoose.model('Force',userSchema);
+
+forceUnique.createIndexes();
 
 userSchema.methods = {
 

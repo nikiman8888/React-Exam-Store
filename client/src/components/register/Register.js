@@ -44,17 +44,17 @@ class Register extends Component {
             services.register(data)
                 .then(res => res.json())
                 .then(res => {
-                    
+                    console.log(res)
                     if (!res.success) {
                         ToastsStore.error(res.message);
                     }
                     else {
                      //ToastsStore.success('Succesfull regisitered');
-                        this.props.history.push({ pathname: '/login', senderInfo: 'register' })
+                       this.props.history.push({ pathname: '/login', senderInfo: 'register' })
                     }                   
                 })
                 .catch(err => {
-                    ToastsStore.error('Username already exist');
+                    ToastsStore.error(err.message);
                 });
 
         }

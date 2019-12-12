@@ -12,8 +12,12 @@ module.exports = {
     post: {
         register: (req, res, next) => {
             const { username, password } = req.body;
+            //const existingUsername = models.User.findOne({name:username});
+
+
             models.User.create({ username, password })
               .then(user =>{
+                  console.log(user )
                   res.send({success:true,message:'Succesfull Registered'})
               }).catch((err) =>{
                   let message = 'Something is not correct';
