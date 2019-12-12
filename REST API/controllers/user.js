@@ -34,31 +34,25 @@ module.exports = {
 
         login: (req, res, next) => {
             const { username, password } = req.body;
-            models.User.findOne({ username })
-               // .then(user =>{
-              //      if(!user){
-               //         res.send('Invalid username');
-                   //     return;
-                //    }
-               // })
+            models.User.findOne({ username })           
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
                     if (!match) {
-                        res.status(401).send('Invalid password');
+                        res.status(401).send({success:false,message:'Invalid username or password'});
                         return;
                     }
 
                     const token = utils.jwt.createToken({ id: user._id });
-                    res.cookie(config.authCookieName, token).send(user);
+                    res.cookie(config.authCookieName, token).send({success:true,user:user});
                 })
                 .catch(next);
         },
 
         logout: (req, res, next) => {
             const token = req.cookies[config.authCookieName];
-            console.log('-'.repeat(100));
-            console.log(token);
-            console.log('-'.repeat(100));
+            //console.log('-'.repeat(100));
+            //console.log(token);
+            //console.log('-'.repeat(100));
             models.TokenBlacklist.create({ token })
                 .then(() => {
                     res.clearCookie(config.authCookieName).send('Logout successfully!');

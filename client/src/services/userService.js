@@ -21,7 +21,7 @@ export default  {
             },
             credentials:"include"
 
-        }).then(res => res.text());
+        })
     
     },
 
