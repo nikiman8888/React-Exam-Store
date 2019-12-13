@@ -9,7 +9,7 @@ function Category() {
             <div className="links-container">
                 <Link to={{ pathname: '/', senderInfo: 'hats' }}>Santa Hats</Link>
                 <Link to={{ pathname: '/', senderInfo: 'gloves' }}>Santa Gloves</Link>
-                <Link to={{ pathname: '/', senderInfo: 'boots' }}>Santa Boots</Link>
+                <Link to={{ pathname: '/', senderInfo: 'shoes' }}>Santa Shoes</Link>
                 <Link to={{ pathname: '/', senderInfo: 'toys' }}>Santa Toys</Link>
             </div>
         </React.Fragment>

@@ -4,6 +4,8 @@ import { ToastsStore } from 'react-toasts';
 
 function registerValidator(title, price,imageUrl,description) {
 
+    const regexImage = new RegExp('^data:image/*');
+
     if (title === '' || title.length < 2) {
         ToastsStore.error('Title should be more than 2 charachter');
         return false;
@@ -13,7 +15,7 @@ function registerValidator(title, price,imageUrl,description) {
         return false;
     }
 
-    if (imageUrl === '') {
+    if (imageUrl === '' || !regexImage.test(imageUrl)) {
         ToastsStore.error('Image Url should valid url');
         return false;
     }

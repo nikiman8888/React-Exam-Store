@@ -1,6 +1,8 @@
 import React from 'react';
 import './UpdateProduct.css';
 import productServices from '../../services/productService';
+import productValidator from '../../formValidations/productValidator';
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
 class UpdateProduct extends React.Component {
     constructor(props){
@@ -57,6 +59,8 @@ class UpdateProduct extends React.Component {
     changeHandlerPrice =(e)=>{
         this.setState({
             price:e.target.value
+
+            
         }) 
     }
     
@@ -68,9 +72,19 @@ class UpdateProduct extends React.Component {
 
     submitHandler =() =>{
       
-        //tuk triabva validacii za poletatta
+        let validator = productValidator(
+            this.state.title,
+            this.state.price,
+            this.state.imageUrl,
+            this.state.description
+        )
+        if (!validator) {
+            return;
+            
+        }
      const data =  this.state;
-        console.log(data);
+     console.log(data);
+        //console.log(data);
      let id = this.props.match.params.prodId;
 
      productServices.update(id,data)
@@ -82,23 +96,22 @@ class UpdateProduct extends React.Component {
        
     }
 
-
-
     render (){
         return (
-            
-            <div className = "shop-container">
+            <React.Fragment>
+                <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
+                <div className = "shop-container">
                <h2>Update Product</h2>
                <form>
                    <div className = "container-input">
-                      <label forHtml = "title">Title</label>
-                      <input type ="text" placeholder = "title" name = "title" onChange = {this.changeHandlerTitle} defaultValue = {this.state.title}/>
+                      <label htmlFor = "title">Title</label>
+                      <input type ="text" placeholder = "title" name = "title" onBlur = {this.changeHandlerTitle} defaultValue = {this.state.title}/>
                       
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "select">Select Category</label>
-                      <select type ="text"  name = "select" onChange = {this.handleChangeSelect} value = {this.state.category}>
+                      <label htmlFor = "select">Select Category</label>
+                      <select type ="text"  name = "select" onBlur = {this.handleChangeSelect} value = {this.state.category}>
                           
                           <option value = "hats"  >Hats</option>
                           <option value = "gloves">Gloves</option>
@@ -108,19 +121,19 @@ class UpdateProduct extends React.Component {
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "desription">Description</label>
-                      <textarea type ="text" placeholder = "max 50 symbols" name = "description"  onChange = {this.changeHandlerDescription} defaultValue= {this.state.description}/>
+                      <label htmlFor = "desription">Description</label>
+                      <textarea type ="text" placeholder = "max 50 symbols" name = "description"  onBlur = {this.changeHandlerDescription} defaultValue= {this.state.description}/>
                    </div>
 
                    <div className = "container-input">
-                      <label forHtml = "price">Price</label>
-                      <input type ="text" placeholder = "price" name = "price"  onChange = {this.changeHandlerPrice} defaultValue= {this.state.price}/>
+                      <label htmlFor = "price">Price</label>
+                      <input type ="text" placeholder = "price" name = "price"  onBlur = {this.changeHandlerPrice} defaultValue= {this.state.price}/>
                    </div>
 
                   
                    <div className = "container-input">
-                      <label forHtml = "imageUrl">Photo</label>
-                      <input type ="text" placeholder = "price" name = "imageUrl"  onChange = {this.changeHandlerImage} defaultValue= {this.state.imageUrl}/>
+                      <label html = "imageUrl">Photo</label>
+                      <input type ="text" placeholder = "price" name = "imageUrl"  onBlur = {this.changeHandlerImage} defaultValue= {this.state.imageUrl}/>
                    </div>
                   
                    <div className = "container-input" >
@@ -128,6 +141,8 @@ class UpdateProduct extends React.Component {
                    </div>
                </form>
             </div>
+            </React.Fragment>
+            
         )
     }
 }

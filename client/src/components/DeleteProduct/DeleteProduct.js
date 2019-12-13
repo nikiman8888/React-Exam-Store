@@ -6,7 +6,7 @@ class DeleteProduct extends React.Component {
     constructor(props){
         super(props)
             this.state ={
-                name: ''
+                title: ''
             }
     }
 
@@ -37,7 +37,7 @@ class DeleteProduct extends React.Component {
             .then(res => res.json())
             .then(product => {
                 this.setState({        
-                   name:product.name
+                   title:product.title
                 })
             }).catch(console.error)
     }
@@ -48,7 +48,7 @@ class DeleteProduct extends React.Component {
                <h2>Delete Product</h2>
                <form>
                    <div className = "container-input">
-                       <h3>Are you sure you want to delete {this.state.name}</h3>                     
+                       <h3>Are you sure you want to delete {this.state.title}</h3>                     
                    </div>
 
                    <div className = "container-input" >
