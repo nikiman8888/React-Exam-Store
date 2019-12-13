@@ -3,11 +3,11 @@ const config = require('../config/config');
 const utils = require('../utils');
 
 module.exports = {
-   // get: (req, res, next) => {
-   //     models.User.find()
-   //         .then((users) => res.send(users))
-   //         .catch(next)
-   // },
+    get: (req, res, next) => {
+        models.User.find()
+            .then((users) => res.send(users))
+            .catch(next)
+    },
 
     post: {
         register: (req, res, next) => {
@@ -34,8 +34,9 @@ module.exports = {
 
         login: (req, res, next) => {
             const { username, password } = req.body;
-            models.User.findOne({ username })           
-                .then((user) => Promise.all([user, user.matchPassword(password)]))
+            models.User.findOne({ username })    
+                     
+                .then((user) => Promise.all([user,user!==null? user.matchPassword(password):null]))
                 .then(([user, match]) => {
                     if (!match) {
                         res.status(401).send({success:false,message:'Invalid username or password'});
@@ -50,9 +51,9 @@ module.exports = {
 
         logout: (req, res, next) => {
             const token = req.cookies[config.authCookieName];
-            //console.log('-'.repeat(100));
-            //console.log(token);
-            //console.log('-'.repeat(100));
+            console.log('-'.repeat(100));
+            console.log(token);
+            console.log('-'.repeat(100));
             models.TokenBlacklist.create({ token })
                 .then(() => {
                     res.clearCookie(config.authCookieName).send('Logout successfully!');
