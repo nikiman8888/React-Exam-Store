@@ -8,12 +8,10 @@ module.exports = (redirectAuthenticated = true) => {
         const token = req.cookies[config.authCookieName] || '';
 
         Promise.all([
-            jwt.verifyToken(token),
-            models.TokenBlacklist.findOne({ token })
+            jwt.verifyToken(token)
         ])
-            .then(([data, blacklistToken]) => {
-                if (blacklistToken) { return Promise.reject(new Error('blacklisted token')) }
-
+            .then(([data]) => {
+               
                 models.User.findById(data.id)
                     .then((user) => {
                         req.user = user;
@@ -23,13 +21,7 @@ module.exports = (redirectAuthenticated = true) => {
             .catch(err => {
                 if (!redirectAuthenticated) { next(); return; }
 
-                if (['token expired', 'blacklisted token', 'jwt must be provided'].includes(err.message)) {
-                    res.status(401).send('UNAUTHORIZED!');
-                    return;
-                }
-
                 next(err);
             })
     }
-
 };

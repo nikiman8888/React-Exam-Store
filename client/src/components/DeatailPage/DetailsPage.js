@@ -54,7 +54,7 @@ class DetailsPage extends React.Component {
                         <span className="product-sales">Sales: {this.state.product.sales}</span>
                         <div>
                             <button type="button" onClick={this.submitHandlerBuy}>Buy</button>
-                            <button type="button" onClick={this.submitHandlerHome}>Go back</button>
+                            <button type="button" onClick={this.submitHandlerHome}>Home page</button>
                         </div>
                     </div>
                 </div>
