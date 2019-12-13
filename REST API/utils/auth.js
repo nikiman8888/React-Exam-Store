@@ -11,7 +11,7 @@ module.exports = (redirectAuthenticated = true) => {
             jwt.verifyToken(token)
         ])
             .then(([data]) => {
-               
+
                 models.User.findById(data.id)
                     .then((user) => {
                         req.user = user;

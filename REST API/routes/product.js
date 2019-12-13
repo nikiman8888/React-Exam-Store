@@ -10,7 +10,7 @@ router.get('/details',controllers.product.getOne);
 
 router.post('/', auth(), controllers.product.post);
 
-router.put('/details', controllers.product.putSell);
+router.put('/details', controllers.product.putSell);  // here is just to update the sell if someboddy buy
 
 router.put('/update', auth(), controllers.product.put);
 

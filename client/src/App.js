@@ -20,7 +20,7 @@ import UpdateProduct from './components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/DeleteProduct/DeleteProduct';
 import NotFound from './components/NotFound/NotFound';
 import NoProducts from './components/NoProducst/NoProducts';
-import loginValidator from './formValidations/loginValidator';
+
 
 function render(title, Cmp, otherProps) {
   return function (props) {
@@ -43,24 +43,24 @@ class App extends React.Component {
     })
   }
 
-  login = (history, data) => {   
-      userServices.login(data)
-      .then(res =>res.json())
-      .then(res=>{
-        if(!res.success){
+  login = (history, data) => {
+    userServices.login(data)
+      .then(res => res.json())
+      .then(res => {
+        if (!res.success) {
           ToastsStore.error(res.message)
-        }else{
+        } else {
           ToastsStore.success(res.message);
           this.setState({ isLogged: true });
           history.push('/my-products')
         }
-      }).catch(error =>{
+      }).catch(error => {
         ToastsStore.error(error.message)
       })
 
-       // this.setState({ isLogged: true });
-       // history.push('/my-products')
-      
+    // this.setState({ isLogged: true });
+    // history.push('/my-products')
+
   }
 
   render() {

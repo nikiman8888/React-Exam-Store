@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../register/register.css';
+import './Register.css';
 import registerValidator from '../../formValidations/registerValidation';
 import services from '../../services/userService';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';

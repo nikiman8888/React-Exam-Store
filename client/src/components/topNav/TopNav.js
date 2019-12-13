@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../topNav/nav.css';
+import './TopNav.css';
 
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route,Link} from 'react-router-dom';
@@ -13,12 +13,15 @@ class  TopNav extends React.Component {
 
   render(){
     const {isLogged} = this.props;
+    console.log(this.props)
     return(
       <div className = "topnav">
       <Link to ='/'>Home</Link>
       <Link to ='/contact'>Contact</Link>      
       <Link to ='/category'>Category</Link>    
+      
       {isLogged &&<Link to ='/my-products'>My Products</Link>}
+      {isLogged &&<Link to ='/my-products'>Welcome </Link>}
       {!isLogged &&<Link to ='/register'>Sell with us?</Link>}
       {!isLogged &&<Link to ='/login'>Login</Link>}
       
