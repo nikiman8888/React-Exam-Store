@@ -7,12 +7,17 @@ class DetailsPage extends React.Component {
         super(props)
 
         this.state = {
-            product: ''
+            product: '',
+            isHidden: true,
+            isNotHidden:false,
+            city:'',
+            money:''
+
         }
     }
 
     componentDidMount() {
-        
+
         let id = this.props.match.params.prodId;
         console.log(this.props)
         productServices.getOne(id)
@@ -22,6 +27,10 @@ class DetailsPage extends React.Component {
                 this.setState({ product: product })
             }).catch(console.error)
     }
+    toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
+   
+               
+    toggleNotHidden = () => this.setState((prevState) => ({ isNotHiden: !prevState.isNotHiden }))    
 
     submitHandlerBuy = () => {
         let id = this.props.match.params.prodId;
@@ -36,7 +45,13 @@ class DetailsPage extends React.Component {
         this.props.history.push('/')
     }
 
+    cityHandler = (e)=>{
+        this.setState({city:e.target.value})
+    }
 
+    moneyHandler = (e)=>{
+        this.setState({money:e.target.value})
+    }
 
     render() {
         return (
@@ -51,10 +66,20 @@ class DetailsPage extends React.Component {
                         <span className="product-price">Price: {this.state.product.price}</span>
                         <span className="product-category">Category: {this.state.product.category}</span>
                         <span className="product-description">Description: {this.state.product.description}</span>
+
                         <span className="product-sales">Sales: {this.state.product.sales}</span>
+                        <div className="buyer-info">
+                            {!this.state.isHidden && <label htmlFor="adress">City</label>}
+                            {!this.state.isHidden && <input name="adress" />}
+                            {!this.state.isHidden && <label htmlFor="money">Money</label>}
+                            {!this.state.isHidden && <input type="number" name="money" />}
+                            {!this.state.isHidden && <button type="button">Confirm</button>}
+                            {!this.state.isHidden && <button type="button" onClick = {this.toggleHidden}>Cancel</button>}
+                        </div>
                         <div>
-                            <button type="button" onClick={this.submitHandlerBuy}>Buy</button>
-                            <button type="button" onClick={this.submitHandlerHome}>Home page</button>
+                            {!this.state.isNotHidden &&<button type="button" onClick={this.toggleHidden}>Buy</button>}
+
+                            {!this.state.isNotHidden &&<button type="button" onClick={this.submitHandlerHome}>Home page</button>}
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ class App extends React.Component {
     super(props)
     const cookies = cookieParser();
     const isLogged = !!cookies['x-auth-token'];
-    this.state = { isLogged };
+    this.state = { isLogged,username:'' };
   }
   logout = (history) => {
     userServices.logout().then(() => {
@@ -47,12 +47,15 @@ class App extends React.Component {
     userServices.login(data)
       .then(res => res.json())
       .then(res => {
-        console.log(res)
+        
         if (!res.success) {
           ToastsStore.error(res.message)
         } else {
+          console.log(res.user);
+          //console.log(this.state);
           ToastsStore.success(res.message);
-          this.setState({ isLogged: true });
+          this.setState({ isLogged: true,username:res.user.username });
+          console.log(res.user.username)
           history.push('/my-products')
         }
       }).catch(error => {
@@ -66,11 +69,12 @@ class App extends React.Component {
 
   render() {
     const { isLogged } = this.state;
+    const {username} = this.state;
     return (
 
       <Router>
 
-        <TopNav isLogged={isLogged} user = {this.state.user}/>
+        <TopNav isLogged={isLogged} username = {username}/>
         <Switch>
           <Route path="/" exact render={render('Main', Main, isLogged)} />
           <Route path="/contact" component={Contact} />

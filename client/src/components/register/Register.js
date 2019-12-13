@@ -44,7 +44,7 @@ class Register extends Component {
             services.register(data)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
+                    
                     if (!res.success) {
                         ToastsStore.error(res.message);
                     }

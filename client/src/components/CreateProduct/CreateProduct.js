@@ -113,7 +113,7 @@ class CreateProduct extends Component {
 
                         <div className="container-input">
                             <label htmlFor="imageUrl">Photo</label>
-                            <input type="text" placeholder="put url of photo" name="imageUrl" onChange={this.changeHandlerImage} />
+                            <input type="text" placeholder="image url (data:image...)" name="imageUrl" onChange={this.changeHandlerImage} />
                         </div>
 
                         <div className="container-input" >

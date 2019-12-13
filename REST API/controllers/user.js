@@ -3,7 +3,8 @@ const config = require('../config/config');
 const utils = require('../utils');
 
 module.exports = {
-   
+    
+    
     post: {
         register: (req, res, next) => {
             const { username, password } = req.body;

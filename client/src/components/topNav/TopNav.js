@@ -6,7 +6,10 @@ class TopNav extends React.Component {
 
   render() {
     const { isLogged } = this.props;
-    console.log(this.props)
+    const { username } = this.props;
+    if (isLogged) {
+      console.log(this.props);
+    }
     return (
       <div className="topnav">
         <Link to='/'>Home</Link>
@@ -14,7 +17,7 @@ class TopNav extends React.Component {
         <Link to='/category'>Category</Link>
 
         {isLogged && <Link to='/my-products'>My Products</Link>}
-        {isLogged && <Link to='/#'>Welcome</Link>}
+        {isLogged && <Link to='#'>Welcome {username}!</Link>}
         {!isLogged && <Link to='/register'>Sell with us?</Link>}
         {!isLogged && <Link to='/login'>Login</Link>}
 

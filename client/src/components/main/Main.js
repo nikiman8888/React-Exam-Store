@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Main.css';
 import productService from '../../services/productService';
 import Products from '../products/Products';
-import {Link} from 'react-router-dom';
 
 class Main extends Component {
     constructor(props) {
@@ -12,7 +11,7 @@ class Main extends Component {
             senderInfo: ''   // senderInfo e informaciata dali idva ot Category page
         }
     }
-     
+
     componentDidMount() {
         this.setState({ senderInfo: this.props.location.senderInfo }) // vzemame info ot koia stranica sym prepraten
 
@@ -38,9 +37,9 @@ class Main extends Component {
         return (
             <div >
                 <h2>{this.state.senderInfo === undefined ? 'All Products' : this.state.senderInfo.toLocaleUpperCase()}</h2>
-                <Products products={this.state.products} page={page} />                               
+                <Products products={this.state.products} page={page} />
             </div>
-            
+
         )
     }
 }

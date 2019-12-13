@@ -17,3 +17,13 @@ span{
     display:block;
     text-align: center;
 }
+
+
+.buyer-info {
+   text-align: center;
+}
+
+.buyer-info input {
+    display: block;
+    margin-left:30%;
+}
