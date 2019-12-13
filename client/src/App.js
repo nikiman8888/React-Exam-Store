@@ -47,6 +47,7 @@ class App extends React.Component {
     userServices.login(data)
       .then(res => res.json())
       .then(res => {
+        console.log(res)
         if (!res.success) {
           ToastsStore.error(res.message)
         } else {
@@ -69,7 +70,7 @@ class App extends React.Component {
 
       <Router>
 
-        <TopNav isLogged={isLogged} />
+        <TopNav isLogged={isLogged} user = {this.state.user}/>
         <Switch>
           <Route path="/" exact render={render('Main', Main, isLogged)} />
           <Route path="/contact" component={Contact} />

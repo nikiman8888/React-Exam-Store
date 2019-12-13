@@ -127,7 +127,7 @@ class UpdateProduct extends React.Component {
 
                    <div className = "container-input">
                       <label htmlFor = "price">Price</label>
-                      <input type ="text" placeholder = "price" name = "price"  onBlur = {this.changeHandlerPrice} defaultValue= {this.state.price}/>
+                      <input type ="number" placeholder = "price" name = "price"  onBlur = {this.changeHandlerPrice} defaultValue= {this.state.price}/>
                    </div>
 
                   

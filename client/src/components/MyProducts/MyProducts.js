@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './MyProducts.css';
-import {Link} from 'react-router-dom';
 import productService from '../../services/productService';
 import Product from '../Product/Product';
+import cookieParser from '../../utils/cookieParser';
 
 class MyProducts  extends Component{
     constructor(props){
@@ -12,6 +12,14 @@ class MyProducts  extends Component{
            products:[]
         }       
     }
+    UNSAFE_componentWillMount(){
+        const cookies = cookieParser();
+        const isLogged = !!cookies['x-auth-token'];
+        if(!isLogged){
+            this.props.history.push({pathname:'/', browser:true});
+            return;
+        }
+     }
      componentDidMount(){
          
         productService.getMy() // moje bi i data
@@ -30,7 +38,7 @@ class MyProducts  extends Component{
              <div className = "shop-container">
                     <h2>MyProducts</h2>
                     {this.state.products.map(product =>(
-                <Product product = {product} page = {page}/>
+                <Product key = {product._id.toString()} product = {product} page = {page}/>
             ))}
              </div>
             

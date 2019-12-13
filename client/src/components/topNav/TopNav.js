@@ -21,7 +21,7 @@ class  TopNav extends React.Component {
       <Link to ='/category'>Category</Link>    
       
       {isLogged &&<Link to ='/my-products'>My Products</Link>}
-      {isLogged &&<Link to ='/my-products'>Welcome </Link>}
+      {isLogged &&<Link to ='#'>Welcome  </Link>}
       {!isLogged &&<Link to ='/register'>Sell with us?</Link>}
       {!isLogged &&<Link to ='/login'>Login</Link>}
       

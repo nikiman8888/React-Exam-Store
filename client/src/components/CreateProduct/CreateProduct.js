@@ -3,6 +3,7 @@ import './CreateProduct.css';
 import productServices from '../../services/productService';
 import productValidator from '../../formValidations/productValidator';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import cookieParser from '../../utils/cookieParser';
 
 class CreateProduct extends Component {
     constructor(props) {
@@ -16,9 +17,16 @@ class CreateProduct extends Component {
             sales: 0
         }
     }
-    counter = () => {
+    UNSAFE_componentWillMount(){
+        const cookies = cookieParser();
+        const isLogged = !!cookies['x-auth-token'];
 
+        if(!isLogged){
+            this.props.history.push('/');
+            
+        }
     }
+   //
     changeHandlerTitle = (e) => {
         this.setState({
             title: e.target.value
@@ -99,7 +107,7 @@ class CreateProduct extends Component {
 
                         <div className="container-input">
                             <label htmlFor="price">Price</label>
-                            <input type="text" placeholder="price" name="price" onChange={this.changeHandlerPrice} />
+                            <input type= "number" placeholder="price" name="price" onChange={this.changeHandlerPrice} />
                         </div>
 
 

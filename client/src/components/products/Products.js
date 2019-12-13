@@ -10,7 +10,7 @@ function Products ({products,page}){
          
         return(  
                 products.map(product =>(                   
-                 <Product product = {product} page = {page}/>                    
+                 <Product key = {product._id.toString()} product = {product} page = {page}/>                    
              ))                                      
         )   
 }
