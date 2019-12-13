@@ -82,7 +82,7 @@ class App extends React.Component {
           <Route path="/update/:prodId" component={UpdateProduct} />
           <Route path="/category" component={Category} />
           <Route path="/delete/:prodId" component={DeleteProduct} />
-          <Route path="/no-products" render={render('No Porducts', NoProducts, isLogged)} />
+          <Route path="/no-products" render={render('No Porducts', NoProducts)} />
 
           <Route component={NotFound} />
         </Switch>

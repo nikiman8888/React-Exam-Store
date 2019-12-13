@@ -10,9 +10,7 @@ form {
 }
 
  .container-input{
-    margin-top:35px;
-   
-    
+    margin-top:35px;  
  }
  label{
      margin-top: 25px;
@@ -26,9 +24,7 @@ form {
      font-size: 20px;
      border-radius: 4px;
  }
- #re-pass{
-    margin-right: 25px ;
-}
+ 
 button {
     margin-bottom: 23px;
     font-size: 25px;

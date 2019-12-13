@@ -1,0 +1,16 @@
+.contact-page{
+    background-color:lightseagreen;
+    margin-top:35px;
+    text-align: center;
+    width: 33%;
+    border-radius: 5px;
+    margin-left: 32%;
+    border: 4px solid rgb(24, 65, 68);
+}
+
+.contact-page p{
+    margin: 20px;
+    padding: 5px;
+    font-size: 25px;
+    font-family: cursive;
+}
