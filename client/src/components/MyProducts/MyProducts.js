@@ -1,52 +1,53 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './MyProducts.css';
 import productService from '../../services/productService';
 import Product from '../Product/Product';
 import cookieParser from '../../utils/cookieParser';
 
-class MyProducts  extends Component{
-    constructor(props){
+class MyProducts extends Component {
+    constructor(props) {
         super(props)
 
         this.state = {
-           products:[]
-        }       
+            products: []
+        }
     }
-    UNSAFE_componentWillMount(){
+    UNSAFE_componentWillMount() {
         const cookies = cookieParser();
         const isLogged = !!cookies['x-auth-token'];
-        if(!isLogged){
-            this.props.history.push({pathname:'/', browser:true});
+        if (!isLogged) {
+            this.props.history.push({ pathname: '/', browser: true });
             return;
         }
-     }
-     componentDidMount(){
-         
+    }
+    componentDidMount() {
+
         productService.getMy() // moje bi i data
-        .then(res=>res.json())
-        .then(products => {
-            //console.log(products)
-            this.setState({products:products})
-        })            
-        }
-    
-    
-    render (){
+            .then(res => res.json())
+            .then(products => {
+                console.log(products)
+                this.setState({ products: products })
+            }).then((products) =>{
+                if(products){
+                    let id = products[0].author;
+                    console.log(id);
+                }
+            })
+    }
+
+    render() {
         const page = 'myPage';
         return (
-         <React.Fragment>
-             <div className = "shop-container">
+            <React.Fragment>
+                <div className="shop-container">
                     <h2>MyProducts</h2>
-                    {this.state.products.map(product =>(
-                <Product key = {product._id.toString()} product = {product} page = {page}/>
-            ))}
-             </div>
-            
-         </React.Fragment>
-        )        
+                    {this.state.products.map(product => (
+                        <Product key={product._id.toString()} product={product} page={page} />
+                    ))}
+                </div>
+            </React.Fragment>
+        )
     }
 }
-
-
 
 export default MyProducts;
