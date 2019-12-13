@@ -30,7 +30,7 @@ class DetailsPage extends React.Component {
     toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
    
                
-    toggleNotHidden = () => this.setState((prevState) => ({ isNotHiden: !prevState.isNotHiden }))    
+    //toggleNotHidden = () => this.setState((prevState) => ({ isNotHiden: !prevState.isNotHiden }))    
 
     submitHandlerBuy = () => {
         let id = this.props.match.params.prodId;
@@ -69,14 +69,14 @@ class DetailsPage extends React.Component {
 
                         <span className="product-sales">Sales: {this.state.product.sales}</span>
                         <div className="buyer-info">
-                            {!this.state.isHidden && <label htmlFor="adress">City</label>}
+                            {!this.state.isHidden && <label htmlFor="adress">Fill your City</label>}
                             {!this.state.isHidden && <input name="adress" />}
-                            {!this.state.isHidden && <label htmlFor="money">Money</label>}
+                            {!this.state.isHidden && <label htmlFor="money">Make your payment</label>}
                             {!this.state.isHidden && <input type="number" name="money" />}
-                            {!this.state.isHidden && <button type="button">Confirm</button>}
+                            {!this.state.isHidden && <button type="button" onClick = {this.submitHandlerBuy}>Confirm</button>}
                             {!this.state.isHidden && <button type="button" onClick = {this.toggleHidden}>Cancel</button>}
                         </div>
-                        <div>
+                        <div className = "btn-buy-home">
                             {!this.state.isNotHidden &&<button type="button" onClick={this.toggleHidden}>Buy</button>}
 
                             {!this.state.isNotHidden &&<button type="button" onClick={this.submitHandlerHome}>Home page</button>}

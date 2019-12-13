@@ -18,12 +18,33 @@ span{
     text-align: center;
 }
 
-
 .buyer-info {
    text-align: center;
+   background: lightseagreen;
+   width: 50%;
+   z-index: 1;
+   position: absolute;
+   
+   border-radius: 5px;
+   margin-top:-160px ;
+   
 }
 
 .buyer-info input {
     display: block;
     margin-left:30%;
+}
+
+.btn-buy-home{
+    overflow: hidden;
+}
+
+.buyer-info button {
+    background-color: lightskyblue;
+    font-family: cursive;
+}
+
+.buyer-info button:hover {
+    background-color: lightslategrey;
+    font-family: cursive;
 }
