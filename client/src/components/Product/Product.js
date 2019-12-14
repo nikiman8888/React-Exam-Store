@@ -14,6 +14,7 @@ class Product extends React.Component {
         const detailsUrl = '/details/' + this.props.product._id;
         const updateUrl = '/update/' +this.props.product._id;
         const deleteUrl = '/delete/' + this.props.product._id;
+        console.log(this.props.product._id)
         //let linkUrl = "/details?id="+this.props.product._id;
         //<Link to={{ pathname: '/details', query: { id: this.props.product._id } }}/>
         //taka go chetem this.props.location.query.id

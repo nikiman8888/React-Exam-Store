@@ -4,6 +4,7 @@ import productServices from '../../services/productService';
 import cookieParser from '../../utils/cookieParser';
 import buyerInfoValidator from '../../formValidations/buyerInfoValidator';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import userServices from '../../services/userService';
 
 class DetailsPage extends React.Component {
     constructor(props) {
@@ -13,22 +14,22 @@ class DetailsPage extends React.Component {
             product: '',
             isHidden: true,
             city: '',
-            money: ''
+            money: '',
+            author:''
         }
     }
     
-    UNSAFE_componentWillMount() {
-        const cookies = cookieParser();
-        const isLogged = !!cookies['x-auth-token'];
-        if (!isLogged) {
-            this.props.history.push({ pathname: '/', browser: true });
-            return;
-        }
-
-    }
+   // UNSAFE_componentWillMount() {
+   //     const cookies = cookieParser();
+   //     const isLogged = !!cookies['x-auth-token'];
+   //     if (!isLogged) {
+   //         this.props.history.push({ pathname: '/', browser: true });
+   //         return;
+   //     }
+//
+   // }
 
     componentDidMount() {
-
         let id = this.props.match.params.prodId;
         console.log(this.props)
         productServices.getOne(id)
@@ -36,8 +37,13 @@ class DetailsPage extends React.Component {
             .then(product => {
                 console.log(product)
                 this.setState({ product: product })
+                this.setState({author:product.author})
+                
             }).catch(console.error)
     }
+      //  userServices.update(this.state.author,this.state.product.money)
+      //  .then()
+    
     toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
 
     submitHandlerBuy = () => {

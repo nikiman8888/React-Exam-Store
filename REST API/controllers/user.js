@@ -48,6 +48,16 @@ module.exports = {
         logout: (req, res, next) => {
             
             res.clearCookie(config.authCookieName).send('Logout successfully!');
+        },
+
+        put :(req,res,next) =>{
+            const { id } = req.query;
+            const { money } = req.body; /// triabva proverka
+
+            models.User.updateOne({ _id: id }, { money }) // triabva da se izmisli
+    
+                .then((updatedUser) => res.send(updatedUser))
+                .catch(next)
         }
     },
 };

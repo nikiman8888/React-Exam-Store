@@ -19,10 +19,11 @@
     margin-top:41px;
     margin-left: 25rem;
     margin-right: 20rem;
-    border: 4px solid lightseagreen;
+    border: 4px solid rgb(243, 147, 2);
     background-color: rgb(186, 223, 228);
     border-radius: 8px ;
     text-align: center;
+    background-color:lightgrey;
     
       
   }
@@ -36,15 +37,15 @@
       font-size: 20px;
       font-family: cursive;
       position: relative;
-      background-color: lightskyblue;
-      border: 3px solid lightseagreen;
+      background-color:rgb(227, 252, 9);
+      border: 3px solid rgb(243, 147, 2);
       border-radius: 4px;
       color: black;
       
   }
 
   .links-container a:hover{
-    background-color: lightseagreen;
+    background-color:rgb(243, 147, 2);
     color: white;
   }
   

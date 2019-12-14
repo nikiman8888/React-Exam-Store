@@ -101,7 +101,7 @@ class UpdateProduct extends React.Component {
         return (
             <React.Fragment>
                 <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
-                <div className = "shop-container">
+                <div className = "update-container">
                <h2>Update Product</h2>
                <form>
                    <div className = "container-input">
