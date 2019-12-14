@@ -4,6 +4,7 @@ import productServices from '../../services/productService';
 import productValidator from '../../formValidations/productValidator';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
+
 class UpdateProduct extends React.Component {
     constructor(props){
         super (props)

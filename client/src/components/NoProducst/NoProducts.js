@@ -1,6 +1,5 @@
 import React from 'react';
 import './NoProducts.css';
-import { Link } from 'react-router-dom';
 
 function NoProducts({ isLogged }) {
     

@@ -2,6 +2,8 @@ import React from 'react';
 import './DetailsPage.css';
 import productServices from '../../services/productService';
 import cookieParser from '../../utils/cookieParser';
+import buyerInfoValidator from '../../formValidations/buyerInfoValidator';
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
 class DetailsPage extends React.Component {
     constructor(props) {
@@ -10,7 +12,6 @@ class DetailsPage extends React.Component {
         this.state = {
             product: '',
             isHidden: true,
-            isNotHidden: false,
             city: '',
             money: ''
         }
@@ -40,9 +41,20 @@ class DetailsPage extends React.Component {
     toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
 
     submitHandlerBuy = () => {
+
+        let validator = buyerInfoValidator(
+            this.state.city,
+            this.state.money,
+            this.state.product.price
+        )
+        if (!validator) {
+            return;
+            //debugger;
+        }
+
         let id = this.props.match.params.prodId;
         let sales = this.state.product.sales + 1;
-
+        console.log(id);
         productServices.updateSell(id, { sales: sales })
             .then(() => {
                 this.props.history.push('/')
@@ -54,6 +66,7 @@ class DetailsPage extends React.Component {
 
     cityHandler = (e) => {
         this.setState({ city: e.target.value })
+        console.log(this.state.city);
     }
 
     moneyHandler = (e) => {
@@ -63,9 +76,9 @@ class DetailsPage extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
                 <div className="shop-container">
                     <h2>Details Page</h2>
-
                     <div className="container-details">
                         <img src={this.state.product.imageUrl} className="product-price" />
                         <span className="product-title">Title: {this.state.product.title}</span>
@@ -77,9 +90,9 @@ class DetailsPage extends React.Component {
                         <span className="product-sales">Sales: {this.state.product.sales}</span>
                         <div className="buyer-info">
                             {!this.state.isHidden && <label htmlFor="adress">Fill your City</label>}
-                            {!this.state.isHidden && <input name="adress" />}
+                            {!this.state.isHidden && <input type = "text" name="adress" onBlur = {this.cityHandler}/>}
                             {!this.state.isHidden && <label htmlFor="money">Make your payment</label>}
-                            {!this.state.isHidden && <input type="number" name="money" />}
+                            {!this.state.isHidden && <input type="number" name="money" onBlur = {this.moneyHandler}/>}
                             {!this.state.isHidden && <button type="button" onClick={this.submitHandlerBuy}>Confirm</button>}
                             {!this.state.isHidden && <button type="button" onClick={this.toggleHidden}>Cancel</button>}
                         </div>
