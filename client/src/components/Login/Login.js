@@ -3,13 +3,13 @@ import './Login.css';
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 import loginValidator from '../../formValidations/loginValidator';
 
+
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
             username: '',
             password: '',
-            errors: null,
             senderInfo: ''
         }
     }
@@ -34,7 +34,6 @@ class Login extends Component {
         })
     }
 
-
     submitHandler = () => {
         let validator = loginValidator(
             this.state.username,
@@ -45,6 +44,7 @@ class Login extends Component {
             return;
             //debugger;
         }
+
         const data = this.state;
         this.props.login(this.props.history, data);
 
@@ -53,6 +53,7 @@ class Login extends Component {
     render() {
 
         return (
+
             <React.Fragment>
                 <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER} />
                 <div className="shop-container">

@@ -7,9 +7,9 @@ class TopNav extends React.Component {
   render() {
     const { isLogged } = this.props;
     const { username } = this.props;
-    if (isLogged) {
-      console.log(this.props);
-    }
+    
+     console.log(this.props);
+    
     return (
       <div className="topnav">
         <Link to='/'>Home</Link>

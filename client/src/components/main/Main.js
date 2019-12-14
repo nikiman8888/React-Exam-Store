@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Main.css';
 import productService from '../../services/productService';
-import Products from '../products/Products';
+import Products from '../Products/Products';
 
 class Main extends Component {
     constructor(props) {

@@ -1,10 +1,6 @@
-import React, {Component}  from 'react';
-import '../products/products.css';
-import {Link} from 'react-router-dom';
+import React  from 'react';
+import './Products.css';
 import Product from '../Product/Product';
-import db from '../../db';
-import service from '../../services/productService';
-
 
 function Products ({products,page}){
          

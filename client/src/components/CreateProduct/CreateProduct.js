@@ -23,7 +23,6 @@ class CreateProduct extends Component {
 
         if (!isLogged) {
             this.props.history.push('/');
-
         }
     }
     

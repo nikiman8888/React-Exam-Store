@@ -4,6 +4,7 @@ import productService from '../../services/productService';
 import Product from '../Product/Product';
 import cookieParser from '../../utils/cookieParser';
 
+
 class MyProducts extends Component {
     constructor(props) {
         super(props)
@@ -16,22 +17,18 @@ class MyProducts extends Component {
         const cookies = cookieParser();
         const isLogged = !!cookies['x-auth-token'];
         if (!isLogged) {
-            this.props.history.push({ pathname: '/', browser: true });
+            this.props.history.push({ pathname: '/not-found', browser: true });
             return;
         }
+
     }
     componentDidMount() {
 
-        productService.getMy() // moje bi i data
+        productService.getMy() 
             .then(res => res.json())
             .then(products => {
                 console.log(products)
                 this.setState({ products: products })
-            }).then((products) =>{
-                if(products){
-                    let id = products[0].author;
-                    console.log(id);
-                }
             })
     }
 

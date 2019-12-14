@@ -1,6 +1,7 @@
 import React from 'react';
 import './DetailsPage.css';
 import productServices from '../../services/productService';
+import cookieParser from '../../utils/cookieParser';
 
 class DetailsPage extends React.Component {
     constructor(props) {
@@ -9,11 +10,20 @@ class DetailsPage extends React.Component {
         this.state = {
             product: '',
             isHidden: true,
-            isNotHidden:false,
-            city:'',
-            money:''
-
+            isNotHidden: false,
+            city: '',
+            money: ''
         }
+    }
+    
+    UNSAFE_componentWillMount() {
+        const cookies = cookieParser();
+        const isLogged = !!cookies['x-auth-token'];
+        if (!isLogged) {
+            this.props.history.push({ pathname: '/', browser: true });
+            return;
+        }
+
     }
 
     componentDidMount() {
@@ -28,9 +38,6 @@ class DetailsPage extends React.Component {
             }).catch(console.error)
     }
     toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
-   
-               
-    //toggleNotHidden = () => this.setState((prevState) => ({ isNotHiden: !prevState.isNotHiden }))    
 
     submitHandlerBuy = () => {
         let id = this.props.match.params.prodId;
@@ -45,12 +52,12 @@ class DetailsPage extends React.Component {
         this.props.history.push('/')
     }
 
-    cityHandler = (e)=>{
-        this.setState({city:e.target.value})
+    cityHandler = (e) => {
+        this.setState({ city: e.target.value })
     }
 
-    moneyHandler = (e)=>{
-        this.setState({money:e.target.value})
+    moneyHandler = (e) => {
+        this.setState({ money: e.target.value })
     }
 
     render() {
@@ -73,13 +80,13 @@ class DetailsPage extends React.Component {
                             {!this.state.isHidden && <input name="adress" />}
                             {!this.state.isHidden && <label htmlFor="money">Make your payment</label>}
                             {!this.state.isHidden && <input type="number" name="money" />}
-                            {!this.state.isHidden && <button type="button" onClick = {this.submitHandlerBuy}>Confirm</button>}
-                            {!this.state.isHidden && <button type="button" onClick = {this.toggleHidden}>Cancel</button>}
+                            {!this.state.isHidden && <button type="button" onClick={this.submitHandlerBuy}>Confirm</button>}
+                            {!this.state.isHidden && <button type="button" onClick={this.toggleHidden}>Cancel</button>}
                         </div>
-                        <div className = "btn-buy-home">
-                            {!this.state.isNotHidden &&<button type="button" onClick={this.toggleHidden}>Buy</button>}
+                        <div className="btn-buy-home">
+                            {!this.state.isNotHidden && <button type="button" onClick={this.toggleHidden}>Buy</button>}
 
-                            {!this.state.isNotHidden &&<button type="button" onClick={this.submitHandlerHome}>Home page</button>}
+                            {!this.state.isNotHidden && <button type="button" onClick={this.submitHandlerHome}>Home page</button>}
                         </div>
                     </div>
                 </div>
