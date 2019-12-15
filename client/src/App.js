@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import './App.css';
-import {ToastsStore } from 'react-toasts';
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 import TopNav from './components/topNav/TopNav'
 import Main from './components/Main/Main';
 import Contact from './components/Contact/Contact';

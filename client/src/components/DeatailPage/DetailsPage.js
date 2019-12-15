@@ -55,8 +55,9 @@ class DetailsPage extends React.Component {
         //console.log(id);
         productServices.updateSell(id, { sales: sales })
             .then(() => {
-                this.props.history.push('/')
-            })
+                this.props.history.push({pathname:'/',bought:`${this.state.city}`})
+            }).catch(console.error())
+            
     }
     submitHandlerHome = () => {
         this.props.history.push('/')
