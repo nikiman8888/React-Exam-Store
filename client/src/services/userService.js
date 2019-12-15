@@ -6,10 +6,7 @@ export default  {
             headers: {
                 'Content-type': 'application/json'
             }
-        })
-        
-
-        
+        })       
     },
 
     login : (data)=>{
@@ -33,21 +30,6 @@ export default  {
         }).then(res=>res.text());
     
     },
-
-   // update: (id,data) => {
-   //     //console.log(data)
-   //     return fetch('http://localhost:9999/api/?id=' + id, { //moje da ne e viarno
-   //         body:JSON.stringify(data),
-   //         method: 'PUT',
-   //         headers: {
-   //             'Content-type': 'application/json',
-   //             'Accept': 'application/json',
-   //         },
-//
-   //         credentials: 'include'
-   //     })
-//
-   // },
 }
 
 

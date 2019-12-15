@@ -3,8 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import './App.css';
-
-import { ToastContainer, toast, ToastsContainer, ToastsStore } from 'react-toasts';
+import {ToastsStore } from 'react-toasts';
 import TopNav from './components/topNav/TopNav'
 import Main from './components/Main/Main';
 import Contact from './components/Contact/Contact';
@@ -35,7 +34,10 @@ class App extends React.Component {
 
     const cookies = cookieParser();
     const isLogged = !!cookies['x-auth-token'];
-    this.state = { isLogged, username: '' };
+    this.state = {
+      isLogged,
+      username: '',
+    };
   }
 
   logout = (history) => {
@@ -68,18 +70,14 @@ class App extends React.Component {
   }
 
   render() {
-
-
     const { username } = this.state;
     const { isLogged } = this.state;
 
     return (
       <Router>
         <TopNav isLogged={isLogged} username={username} />
-
         <Switch>
           <Route path="/" exact render={render('Main', Main, isLogged)} />
-
           <Route path="/contact" component={Contact} />
           <Route path="/my-products" render={render('Main', MyProducts, isLogged)} />
           <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />
@@ -91,10 +89,8 @@ class App extends React.Component {
           <Route path="/category" component={Category} />
           <Route path="/delete/:prodId" component={DeleteProduct} />
           <Route path="/no-products" render={render('No Porducts', NoProducts)} />
-
           <Route component={NotFound} />
         </Switch>
-
       </Router>
     );
   }

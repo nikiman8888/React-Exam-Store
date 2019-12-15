@@ -10,7 +10,8 @@ class MyProducts extends Component {
         super(props)
 
         this.state = {
-            products: []
+            products: [],
+            profit:0
         }
     }
     UNSAFE_componentWillMount() {
@@ -23,12 +24,16 @@ class MyProducts extends Component {
 
     }
     componentDidMount() {
-
         productService.getMy() 
             .then(res => res.json())
             .then(products => {
-                console.log(products)
-                this.setState({ products: products })
+                this.setState({ products: products })  
+                let getProfit = 0;  
+                products.map(product =>{     // vzimam prodadajbite za da nameria pe4albata
+                    let current = product.price*product.sales;
+                    getProfit += current;
+                }) 
+                this.setState({profit:getProfit})         
             })
     }
 
@@ -37,7 +42,7 @@ class MyProducts extends Component {
         return (
             <React.Fragment>
                 <div className="shop-container">
-                    <h2>MyProducts</h2>
+                <h2>My Products Profit: {this.state.profit}</h2>
                     {this.state.products.map(product => (
                         <Product key={product._id.toString()} product={product} page={page} />
                     ))}

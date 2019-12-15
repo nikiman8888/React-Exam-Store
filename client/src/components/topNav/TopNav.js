@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './TopNav.css';
 import { Link } from 'react-router-dom';
+import {createKey} from 'react';
 
 class TopNav extends React.Component {
-
+  constructor(props){
+    super(props)
+    
+  }
   render() {
     const { isLogged } = this.props;
     const { username } = this.props;

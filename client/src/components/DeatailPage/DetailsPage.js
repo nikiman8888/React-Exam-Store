@@ -9,7 +9,6 @@ import userServices from '../../services/userService';
 class DetailsPage extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             product: '',
             isHidden: true,
@@ -18,36 +17,30 @@ class DetailsPage extends React.Component {
             author:''
         }
     }
-    
-   // UNSAFE_componentWillMount() {
-   //     const cookies = cookieParser();
-   //     const isLogged = !!cookies['x-auth-token'];
-   //     if (!isLogged) {
-   //         this.props.history.push({ pathname: '/', browser: true });
-   //         return;
-   //     }
+//UNSAFE_componentWillMount() {
+//    const cookies = cookieParser();
+//    const isLogged = !!cookies['x-auth-token'];
+//    if (!isLogged) {
+//        this.props.history.push({ pathname: '/', browser: true });
+//        return;
+//    }
 //
-   // }
-
+//}
     componentDidMount() {
         let id = this.props.match.params.prodId;
         console.log(this.props)
         productServices.getOne(id)
             .then(res => res.json())
             .then(product => {
-                console.log(product)
+                //console.log(product)
                 this.setState({ product: product })
                 this.setState({author:product.author})
                 
             }).catch(console.error)
     }
-      //  userServices.update(this.state.author,this.state.product.money)
-      //  .then()
-    
     toggleHidden = () => this.setState((prevState) => ({ isHidden: !prevState.isHidden }));
 
     submitHandlerBuy = () => {
-
         let validator = buyerInfoValidator(
             this.state.city,
             this.state.money,
@@ -57,10 +50,9 @@ class DetailsPage extends React.Component {
             return;
             //debugger;
         }
-
         let id = this.props.match.params.prodId;
         let sales = this.state.product.sales + 1;
-        console.log(id);
+        //console.log(id);
         productServices.updateSell(id, { sales: sales })
             .then(() => {
                 this.props.history.push('/')
