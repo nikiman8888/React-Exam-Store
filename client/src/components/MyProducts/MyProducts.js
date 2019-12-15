@@ -42,7 +42,7 @@ class MyProducts extends Component {
         return (
             <React.Fragment>
                 <div className="shop-container">
-                <h2>My Products Profit: {this.state.profit}</h2>
+                <h2>My Products Profit: {this.state.profit}$</h2>
                     {this.state.products.map(product => (
                         <Product key={product._id.toString()} product={product} page={page} />
                     ))}
